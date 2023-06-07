@@ -1,11 +1,13 @@
 version: "3.7"
 services:
-  nginx:
-    image: "nginx:latest"
-    container_name: next-page-nginx
-    restart: unless-stopped
-    volumes:
-      - /home/ec2-user/study-3/kdt1-study-3-team1-front/conf:/etc/nginx/conf.d
-      - /home/ec2-user/study-3/kdt1-study-3-team1-front/html:/usr/share/nginx/html
+  frontend:
+    image: ghcr.io/dusdn943/frontend-server:latest
+    container_name: docker-frontend-deploy-server
     ports:
       - "80:80"
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge
